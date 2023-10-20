@@ -1,0 +1,9 @@
+Commuters
+	- Allow commuters to view the schedule and have it organized based on their needs using parameters they can input
+
+Drivers
+	- Allow drivers to view their assigned bus for the day
+
+Admin
+	- Allow for the modification and creation of bus stops, routes, etc
+	- Allow for the assignment of bus drivers to their bus
