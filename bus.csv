@@ -1,0 +1,13 @@
+b_buskey,b_model,b_manufacturer,b_capacity,b_status,b_routekey
+1,1,Blue Bird ,35,1,0
+2,2,Blue Bird ,50,1,5
+3,2,Blue Bird ,50,1,2
+4,1,Gillig ,50,1,6
+5,1,Gillig ,50,1,4
+6,2,Gillig ,70,0,0
+7,2,Gillig ,70,0,0
+8,1,Thomas ,45,1,5
+9,1,Thomas ,45,1,4
+10,2,Thomas ,50,1,3
+11,2,Thomas ,50,0,0
+12,2,Thomas ,50,0,0
