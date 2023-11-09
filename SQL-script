@@ -1,0 +1,23 @@
+import sqlite3
+
+connection = sqlite3.connect("data.db")
+
+cur = connection.cursor()
+
+#create a new user 
+cur.execute("""
+            INSERT INTO user(u_name) VALUES
+                ('Kevin Hart'), 
+                ('Frank Ocean')
+                """)
+connection.commit()
+
+#add new bus route
+# cur.execute("""
+#             INSERT INTO routes VALUES 
+#                 ('') 
+#                 """)
+
+#update bus status 
+
+connection.close()
