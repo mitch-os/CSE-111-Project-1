@@ -23,6 +23,16 @@ dt.columns = dt.columns.str.strip() #gets rid of spaces
 
 dt.to_sql('routes', connection, if_exists='replace')
 
+du = pd.read_csv('schedule.csv')
 
+du.columns = du.columns.str.strip()
+
+du.to_sql('schedule', connection, if_exists='replace')
+
+dv = pd.read_csv('busstops.csv')
+
+dv.columns = dv.columns.str.strip()
+
+dv.to_sql('busstops', connection, if_exists='replace')
 
 connection.close()
