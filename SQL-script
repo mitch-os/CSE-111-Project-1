@@ -75,8 +75,8 @@ cur = connection.cursor()
 # connection.commit()
 
 
-# look for what times there's a bus departing from a specific stop
-# cur.execute("SELECT r_name, sc_time FROM schedule JOIN routes ON r_routekey = sc_routekey JOIN busstops ON bs_stopkey = sc_stopkey WHERE bs_name=\"Granville Apartments\" ORDER BY bs_name, sc_time")
+# #look for what times there's a bus departing from a specific stop
+# cur.execute("SELECT r_name, sc_time FROM schedule JOIN routes ON r_routekey = sc_routekey JOIN busstops ON bs_stopkey = sc_stopkey WHERE bs_name=\"University Transit Center (UTC)\" ORDER BY bs_name, sc_time")
 # rows = cur.fetchall()
 # for row in rows:
 #     print(row)
@@ -96,7 +96,7 @@ cur = connection.cursor()
 #     print(row)
 # connection.commit()
 
-# look for which driver is currently on what route and what bus they're using on that route
+# #look for which driver is currently on what route and what bus they're using on that route
 # cur.execute("SELECT d_name, b_buskey, r_name FROM busses JOIN drivers ON d_buskey = b_buskey JOIN routes ON r_routekey = b_routekey")
 # rows = cur.fetchall()
 # for row in rows:
