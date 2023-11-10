@@ -4,20 +4,32 @@ connection = sqlite3.connect("data.db")
 
 cur = connection.cursor()
 
-#create a new user 
-cur.execute("""
-            INSERT INTO user(u_name) VALUES
-                ('Kevin Hart'), 
-                ('Frank Ocean')
-                """)
+# #create a new user 
+# cur.execute("""
+#             INSERT INTO user(u_name) VALUES
+#                 ('Kevin Hart'), 
+#                 ('Frank Ocean')
+#                 """)
+# connection.commit()
+
+# # add new bus route
+# cur.execute("""
+#             INSERT INTO routes(r_name, r_routekey, r_availability) VALUES 
+#                 ('Dummy Route', 12, 'Weekend' ) 
+#                 """)
+# connection.commit()
+
+# #update bus status to reflect data (starts at 1 not zero)
+# cur.execute("""UPDATE busses SET b_status = 2 WHERE b_status = 1""")
+# connection.commit() 
+# cur.execute("""UPDATE busses SET b_status = 1 WHERE b_status = 0""")
+# connection.commit()
+
+#update drivers similarly to busses 
+cur.execute("UPDATE drivers SET d_statuskey = 2 WHERE d_statuskey = 1")
+connection.commit()
+cur.execute("UPDATE drivers SET d_statuskey = 1 WHERE d_statuskey = 0")
 connection.commit()
 
-#add new bus route
-# cur.execute("""
-#             INSERT INTO routes VALUES 
-#                 ('') 
-#                 """)
-
-#update bus status 
 
 connection.close()
