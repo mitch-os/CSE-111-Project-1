@@ -89,5 +89,12 @@ connection.commit()
 #     print(row)
 # connection.commit()
 
+# look for which stops depart at a specific time
+cur.execute("SELECT bs_name FROM busstops JOIN schedule ON sc_stopkey = bs_stopkey WHERE sc_time = \"8:22 AM\"")
+rows = cur.fetchall()
+for row in rows:
+    print(row)
+connection.commit()
+
 
 connection.close()
