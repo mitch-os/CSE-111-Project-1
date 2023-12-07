@@ -209,7 +209,7 @@ while menuInput != 9:
             
             print("The following routes run on the " + activeRoute)
             # look for which routes run on the weekends
-            query = "SELECT r_name FROM routes WHERE r_availability = \"" + activeRoute + "\""
+            query = "SELECT r_name FROM routes WHERE r_availability = ( \"" + activeRoute + "\" )" 
             cur.execute(query)
             rows = cur.fetchall()
             for row in rows:
@@ -311,10 +311,24 @@ while menuInput != 9:
             print("Admin View: Modify Existing")
             print("1. Edit User")
             print("2. Edit Driver")
-            print("3. Edit Route")
-            print("4. Edit Stop")
+            print("3. Edit Bus")
+            print("4. Edit Route")
+            print("5. Edit Stop")
             print("9. Go Back")
             adminmenu = int(input())
+            if adminmenu == 1:
+                print("Admin View: Edit User")
+            elif adminmenu == 2: 
+                print("Admin View: Edit Driver")
+            elif adminmenu == 3: 
+                print("Admin View: Edit Bus")
+            elif adminmenu == 4: 
+                print("Admin View: Edit Route")
+            elif adminmenu == 5: 
+                print("Admin View: Edit Stop")
+            elif adminmenu == 9: 
+                admininput = 0; 
+            
         
         elif admininput == 3:
             adminmenu = 0;
@@ -325,10 +339,62 @@ while menuInput != 9:
             print("4. View All Bus Stops")
             print("5. View All Bus Routes")
             adminmenu = int(input())
+            if adminmenu == 1:
+                print("Admin View: All Users")
+            elif adminmenu == 2: 
+                print("Admin View: All Drivers")
+            elif adminmenu == 3: 
+                print("Admin View: All Busses")
+            elif adminmenu == 4: 
+                print("Admin View: All Bus Stops")
+            elif adminmenu == 4: 
+                print("Admin View: All Bus Routes")
+            elif adminmenu == 9: 
+                admininput = 0; 
         elif admininput == 9: 
             menuInput = 0
    
-   
+
+# COMMUTER VIEW START #
+
+# look for which routes contain a certain stop
+# cur.execute("SELECT DISTINCT(r_name) FROM routes JOIN schedule ON sc_routekey = r_routekey JOIN busstops ON bs_stopkey = sc_stopkey WHERE bs_name = \"University Transit Center (UTC)\"")
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row)
+# connection.commit()
+
+# look for what times there's a bus departing from a specific stop
+# cur.execute("SELECT r_name, sc_time FROM schedule JOIN routes ON r_routekey = sc_routekey JOIN busstops ON bs_stopkey = sc_stopkey WHERE bs_name=\"University Transit Center (UTC)\" ORDER BY bs_name, sc_time")
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row)
+# connection.commit()
+
+# look for which routes run on the weekends
+# cur.execute("SELECT r_name FROM routes WHERE r_availability = \"Weekday\"")
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row)
+# connection.commit()
+
+# look for which stops depart at a specific time
+# cur.execute("SELECT bs_name FROM busstops JOIN schedule ON sc_stopkey = bs_stopkey WHERE sc_time = \"8:22 AM\"")
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row)
+# connection.commit()
+
+# COMMUTER VIEW END #
+
+
+# DRIVER VIEW START #
+
+
+
+# DRIVER VIEW END   #
+
+
 # create a new user 
 # cur.execute("""
 #             INSERT INTO user(u_name) VALUES
@@ -357,11 +423,7 @@ while menuInput != 9:
 # connection.commit()
 
 
-# organize schedule by route
-# cur.execute("SELECT r_name, sc_time, bs_name FROM schedule JOIN routes ON r_routekey = sc_routekey JOIN busstops ON bs_stopkey = sc_stopkey WHERE r_name = \"Bobcat Express\" ORDER BY sc_time")
-# rows = cur.fetchall()
-# for row in rows:
-#     print(row)
+
 
 # log bus usage from student
 # cur.execute("INSERT INTO usebus(ubu_id, ubu_buskey, ubu_bs_on, ubu_bs_off) VALUES(3, 1, 1, 3)")
@@ -371,12 +433,7 @@ while menuInput != 9:
 # cur.execute("UPDATE drivers SET d_buskey=1 WHERE d_name='Simon Ventura'")
 # connection.commit()
 
-# look for which routes contain a certain stop
-# cur.execute("SELECT DISTINCT(r_name) FROM routes JOIN schedule ON sc_routekey = r_routekey JOIN busstops ON bs_stopkey = sc_stopkey WHERE bs_name = \"University Transit Center (UTC)\"")
-# rows = cur.fetchall()
-# for row in rows:
-#     print(row)
-# connection.commit()
+
 
 # Assigning a bus to a route 
 # cur.execute("UPDATE busses SET b_routekey=1 WHERE b_buskey = 1")
@@ -400,26 +457,9 @@ while menuInput != 9:
 # connection.commit()
 
 
-# #look for what times there's a bus departing from a specific stop
-# cur.execute("SELECT r_name, sc_time FROM schedule JOIN routes ON r_routekey = sc_routekey JOIN busstops ON bs_stopkey = sc_stopkey WHERE bs_name=\"University Transit Center (UTC)\" ORDER BY bs_name, sc_time")
-# rows = cur.fetchall()
-# for row in rows:
-#     print(row)
-# connection.commit()
 
-# look for which routes run on the weekends
-# cur.execute("SELECT r_name FROM routes WHERE r_availability = \"Weekday\"")
-# rows = cur.fetchall()
-# for row in rows:
-#     print(row)
-# connection.commit()
 
-# look for which stops depart at a specific time
-# cur.execute("SELECT bs_name FROM busstops JOIN schedule ON sc_stopkey = bs_stopkey WHERE sc_time = \"8:22 AM\"")
-# rows = cur.fetchall()
-# for row in rows:
-#     print(row)
-# connection.commit()
+
 
 # #look for which driver is currently on what route and what bus they're using on that route
 # cur.execute("SELECT d_name, b_buskey, r_name FROM busses JOIN drivers ON d_buskey = b_buskey JOIN routes ON r_routekey = b_routekey")
