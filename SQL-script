@@ -318,14 +318,19 @@ while menuInput != 9:
             adminmenu = int(input())
             if adminmenu == 1:
                 print("Admin View: Edit User")
+                print("Please enter User name: ") 
             elif adminmenu == 2: 
                 print("Admin View: Edit Driver")
+                print("Please enter Driver name: ") 
             elif adminmenu == 3: 
                 print("Admin View: Edit Bus")
+                print("Please enter Bus Key: ") 
             elif adminmenu == 4: 
                 print("Admin View: Edit Route")
+                print("Please enter Route name: ") 
             elif adminmenu == 5: 
                 print("Admin View: Edit Stop")
+                print("Please enter Stop: ") 
             elif adminmenu == 9: 
                 admininput = 0; 
             
