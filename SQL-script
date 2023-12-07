@@ -346,18 +346,38 @@ while menuInput != 9:
             adminmenu = int(input())
             if adminmenu == 1:
                 print("Admin View: All Users")
+                query = "SELECT u_name FROM user"
+                rows = cur.fetchall()
+                print("All Users:")
+                for row in rows:
+                    print(row[0])
+                connection.commit()
             elif adminmenu == 2: 
                 print("Admin View: All Drivers")
+                query = "SELECT d_name FROM drivers"
+                rows = cur.fetchall()
+                print("All Drivers:")
+                for row in rows:
+                    print(row[0])
+                connection.commit()
             elif adminmenu == 3: 
                 print("Admin View: All Busses")
             elif adminmenu == 4: 
                 print("Admin View: All Bus Stops")
-            elif adminmenu == 4: 
+                query = "SELECT bs_name FROM busstops"
+                rows = cur.fetchall()
+                print("All Bus Stops:")
+                for row in rows:
+                    print(row[0])
+                connection.commit()
+            elif adminmenu == 5: 
                 print("Admin View: All Bus Routes")
+                query = "SELECT r_name FROM routes"
+                for row in rows:
+                    print(row[0])
+                connection.commit()
             elif adminmenu == 9: 
                 admininput = 0; 
-        elif admininput == 9: 
-            menuInput = 0
    
 
 # COMMUTER VIEW START #
