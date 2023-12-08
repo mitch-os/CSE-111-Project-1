@@ -337,7 +337,7 @@ while menuInput != 9:
                 buskey = input()
                 print("Please enter Bus status: ") 
                 status = input()
-                # update drivers similarly to busses 
+                # update busses 
                 query = "UPDATE busses SET b_statuskey = \"" + str(status) + "\" WHERE b_buskey = \"" + str(buskey) + "\""
             elif adminmenu == 9: 
                 admininput = 0; 
