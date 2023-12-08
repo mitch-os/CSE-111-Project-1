@@ -1,0 +1,523 @@
+import sqlite3
+
+connection = sqlite3.connect("data.db")
+
+cur = connection.cursor()
+
+menuInput = 0
+
+while menuInput != 9:
+    if menuInput == 0:
+        print("Welcome to the bus schedule please select which view you would like to use:")
+        print("1. Commuter")
+        print("2. Driver")
+        print("3. Admin")
+        print("9. Exit")
+        menuInput = int(input())
+
+    elif menuInput == 1: # contains the commuter cenetered view of the bus schedule
+        commuterInput = 0
+        print("Welcome to the Commuter view")
+        print("Please select what view you would like to see:")
+        print("1. Route")                       # organize schedule by route
+        print("2. Route by Stop")               # look for which routes contain a certain stop
+        print("3. Routes by Weekday/Weekend")   # look for which routes run on the weekends 
+        print("4. Stop by Time")                # look for what times there's a bus departing from a specific stop
+        print("9. Go Back")
+        commuterInput = int(input())
+        
+        if commuterInput == 1:
+            routeInput = 0
+            print("Please select which route you would like to view: ")
+            print("1. Bobcat Express")
+            print("2. C-1")
+            print("3. C-2")
+            print("4. E1")
+            print("5. E2")
+            print("6. FastCat")
+            print("7. FastCat 2")
+            print("8. G Line")
+            print("9. Yosemite Express")
+            routeInput = int(input())
+
+            if routeInput == 1:
+                activeRoute = "Bobcat Express"
+            elif routeInput == 2:
+                activeRoute = "C-1"
+            elif routeInput == 3:
+                activeRoute = "C-2"
+            elif routeInput == 4:
+                activeRoute = "E1"
+            elif routeInput == 5:
+                activeRoute = "E2"
+            elif routeInput == 6:
+                activeRoute = "FastCat"
+            elif routeInput == 7:
+                activeRoute = "FastCat 2"
+            elif routeInput == 8:
+                activeRoute = "G Line"
+            elif routeInput == 9:
+                activeRoute = "Yosemite Express"
+
+            print("Bus Schedule")
+            # organize schedule by route
+            query = "SELECT r_name, sc_time, bs_name FROM schedule JOIN routes ON r_routekey = sc_routekey JOIN busstops ON bs_stopkey = sc_stopkey WHERE r_name = \"" + activeRoute + "\" ORDER BY sc_time"
+            cur.execute(query)
+            rows = cur.fetchall()
+            for row in rows:
+                print(row[0] + " || " + row[1] + " || " + row[2])
+            
+        elif commuterInput == 2:
+            print("Please select which stop you would like to see: ")
+            print("1. University Transit Center (UTC)")
+            print("2. Granville Apartments")
+            print("3. G St. & W. Alexander Ave. (Bus Stop on \"G\" by Gas Station)")
+            print("4. Rite Aid/Walgreens")
+            print("5. El Portal Plaza & \"G\" Street (Bus stop on \"G\")")
+            print("6. Mercy Hospital/Tri-College")
+            print("7. M St. At Bellevue RD (Bellevue Ranch)")
+            print("8. Tri-College/Mercy (Bus stop on \"G\" next to Tri College)")
+            print("9. G St. & W. Alexander Ave. (Bus Stop -Paul's Place)")
+            print("10. R Street Village Apts.")
+            print("11. El Redondo Dr. (Across from Jenner Dr.) ")
+            print("12. Compass Pointe Apts. (Bus stop on Pacific Dr. in Front) ")
+            print("13. Merced College The Bus Terminal ")
+            print("14. Promenade Center")
+            print("15. Merced Mall Target ")
+            print("16. Walmart on Loughborough Dr.")
+            print("17. Amtrak Station ")
+            print("18. K St. Between 18th & 19th St.(The Bus stop) ")
+            print("19. Buena Vista Dr")
+            print("20. Village Apts. \"M\" Street ")
+            print("21. Cardella Rd. & \"M\" Street (North)")
+            print("22. Foothill Drive")
+            print("23. Cardella Rd. & \"M\" Street (South)")
+            print("24. \"G Street South. Across from Raley's (The Bus Stop) \"")
+            print("25. \"Walmart on Loughborough (The Bus Stop)\"")
+            print("26. \"Meadows Ave. & Olivewood Dr. (Foodmaxx)\"")
+            print("27. Yosemite Crossings Shopping Center")
+            print("28. M Street Village Apartments")
+            print("29. Ironstone Dr. & M St.")
+            print("30. Yosemite & Cordova (Merced Physician Center)")
+            print("31. Moraga Subdivision")
+            print("32. University Surgery Center")
+            print("33. Yosemite Crossings Shopping Center")
+            print("34. Cardella Rd. & \"M\" Street")
+            print("35. UC Merced Downtown Campus Center ")
+            print("36. Moraga Subdivision bus pullout (South)")
+            print("37. Merced Transpo")
+            routeInput = int(input())
+
+            if routeInput == 1:
+                activeRoute = 1
+            elif routeInput == 2:
+                activeRoute = 2
+            elif routeInput == 3:
+                activeRoute = 3
+            elif routeInput == 4:
+                activeRoute = 4
+            elif routeInput == 5:
+                activeRoute = 5
+            elif routeInput == 6:
+                activeRoute = 6
+            elif routeInput == 7:
+                activeRoute = 7
+            elif routeInput == 8:
+                activeRoute = 8
+            elif routeInput == 9:
+                activeRoute = 10
+            elif routeInput == 10:
+                activeRoute = 11
+            elif routeInput == 11:
+                activeRoute = 12
+            elif routeInput == 12:
+                activeRoute = 13
+            elif routeInput == 13:
+                activeRoute = 14
+            elif routeInput == 14:
+                activeRoute = 16
+            elif routeInput == 15:
+                activeRoute = 17
+            elif routeInput == 16:
+                activeRoute = 18
+            elif routeInput == 17:
+                activeRoute = 19
+            elif routeInput == 18:
+                activeRoute = 20
+            elif routeInput == 19:
+                activeRoute = 27
+            elif routeInput == 20:
+                activeRoute = 29
+            elif routeInput == 21:
+                activeRoute = 31
+            elif routeInput == 22:
+                activeRoute = 33
+            elif routeInput == 23:
+                activeRoute = 34
+            elif routeInput == 24:
+                activeRoute = 35
+            elif routeInput == 25:
+                activeRoute = 38
+            elif routeInput == 26:
+                activeRoute = 39
+            elif routeInput == 27:
+                activeRoute = 42
+            elif routeInput == 28:
+                activeRoute = 48
+            elif routeInput == 29:
+                activeRoute = 49
+            elif routeInput == 30:
+                activeRoute = 50
+            elif routeInput == 31:
+                activeRoute = 51
+            elif routeInput == 32:
+                activeRoute = 52
+            elif routeInput == 33:
+                activeRoute = 54
+            elif routeInput == 34:
+                activeRoute = 56
+            elif routeInput == 35:
+                activeRoute = 69
+            elif routeInput == 36:
+                activeRoute = 70
+            elif routeInput == 37:
+                activeRoute = 71
+            
+            # look for what times there's a bus departing from a specific stop
+            query = "SELECT r_name, sc_time, bs_name FROM schedule JOIN routes ON r_routekey = sc_routekey JOIN busstops ON bs_stopkey = sc_stopkey WHERE bs_stopkey=\"" + str(activeRoute) + "\" ORDER BY bs_name, sc_time"
+            cur.execute(query)
+            rows = cur.fetchall()
+
+            print("Routes that contain the stop " + rows[0][2])
+
+            for row in rows:
+                # print(row[0] + " || " + row[1])
+                print(f"{row[0]:<20}{' || ':<0}{row[1]:<0}")
+            connection.commit()
+
+        elif commuterInput == 3:
+            
+            print("Please select which availability you would like to view: ")
+            print("1. Weekday")
+            print("2. Weekend")
+            routeInput = int(input())
+
+            if routeInput == 1:
+                activeRoute = "Weekday"
+            elif routeInput == 2:
+                activeRoute = "Weekend"
+            
+            print("The following routes run on the " + activeRoute)
+            # look for which routes run on the weekends
+            query = "SELECT r_name FROM routes WHERE r_availability = ( \"" + activeRoute + "\" )" 
+            cur.execute(query)
+            rows = cur.fetchall()
+            for row in rows:
+                print(row[0])
+            connection.commit()
+
+        elif commuterInput == 4:
+            print("Please input the start of the time range you'd like to search through(HH:MM): ")
+            routeInput = input()
+            print("Please input the end of the time range you'd like to search through(HH:MM): ")
+            routeInput2 = input()
+
+            print("The following stops have a bus departing between " + routeInput + " and " + routeInput2)
+            # look for which stops depart at a specific time
+            query = "SELECT bs_name, sc_time FROM busstops JOIN schedule ON sc_stopkey = bs_stopkey WHERE sc_time BETWEEN \"" + routeInput + "\" AND \"" + routeInput2 + "\" " + "ORDER BY sc_time"
+            cur.execute(query)
+            rows = cur.fetchall()
+            for row in rows:
+                print(f"{row[0]:<60}{' || ':<0}{row[1]:<0}")
+            connection.commit()
+
+        elif commuterInput == 9:
+            menuInput = 0
+
+    elif menuInput == 2: # contains the driver's schedule of the bus
+
+        print("Welcome to the Driver view")
+        query = "SELECT d_name, r_name FROM drivers JOIN busses ON b_buskey = d_buskey JOIN routes ON r_routekey = b_routekey"
+        cur.execute(query)
+        rows = cur.fetchall()
+        for row in rows:
+            print(f"{row[0]:<30}{' || ':<0}{row[1]:<0}")
+        connection.commit()
+
+        menuInput = 0
+
+    elif menuInput == 3: # contains the admin options for the program
+        admininput = 0;
+        print("Welcome to Admin View")
+        print("Please select what you would like to do:")
+        print("1. Create New")
+        print("2. Modify Existing")
+        print("3. View All Users/Drivers/Busses")
+        print("9. Go Back")
+        admininput = int(input())
+
+        if admininput == 1:
+            adminmenu = 0
+            print("Admin View: Create New")
+            print("1. New User")
+            print("2. New Driver")
+            print("3. New Bus Route")
+            print("4. New Bus Stop")
+            print("9. Go Back")
+            adminmenu = int(input())
+            if adminmenu == 1:
+                print("Admin View: New User") 
+                print("Please enter new user name: ") 
+                newuser = str(input());
+                query = "INSERT INTO user(u_name) VALUES (\"" + str(newuser) + "\")"
+                cur.execute(query);
+                connection.commit();
+            elif adminmenu == 2: 
+                print("Admin View: New Driver")
+                print("Please enter new Driver name: ")
+                newdriver = str(input())
+                print("Enter bus assignment, enter 0 if N/A: ")
+                dassign = int(input())
+                print("Enter driver status, enter 0 if N/A: ")
+                dstatus = int(input())
+                query = "INSERT INTO drivers(d_name, d_buskey, d_statuskey) VALUES (\"" + str(newdriver) + "\"," + str(dassign) + "," + str(dstatus) + ")"  
+                cur.execute(query);
+                connection.commit();
+            elif adminmenu == 3: 
+                print("Admin View: New Route")
+                print("Please enter new Route name: ") 
+                newroute = input();
+                print("Enter route key")
+                rkey = input()
+                print("Enter route availability")
+                ravail = input()
+                query = "INSERT INTO routes(r_name, r_routekey, r_availability) VALUES (\"" + str(newroute) + "\"," + str(rkey) + "," + str(ravail) + ")"
+                cur.execute(query);
+                connection.commit();
+            elif adminmenu == 4: 
+                print("Admin View: New Stop") 
+                print("Please enter new Stop name: ")
+                bsname = input()
+                print("Please enter Bus Stop key: ")
+                bskey = input()
+                query = "INSERT INTO busstops(bs_name, bs_stopkey) VALUES (\"" + str(bsname) + "\"," + str(bskey) + ")"
+                cur.execute(query);
+                connection.commit();
+            elif adminmenu == 9:
+                admininput = 0; 
+        
+        elif admininput == 2: 
+            adminmenu = 0
+            print("Admin View: Modify Existing")
+            print("1. Edit User")
+            print("2. Edit Driver")
+            print("3. Edit Bus")
+            print("9. Go Back")
+            adminmenu = int(input())
+            if adminmenu == 1:
+                print("Admin View: Edit User")
+                print("Please enter User name: ") 
+                uname = input()
+                # # delete a user
+                query = "DELETE FROM user WHERE u_name = \"" + str(uname) + "\""
+                cur.execute(query) 
+                connection.commit()
+
+            elif adminmenu == 2: 
+                print("Admin View: Edit Driver")
+                print("Please enter Driver name: ")
+                dname = input()
+                print("Please enter Driver status: ") 
+                status = input()
+                # update drivers similarly to busses 
+                query = "UPDATE drivers SET d_statuskey = \"" + str(status) + "\" WHERE d_name = \"" + str(dname) + "\""
+            elif adminmenu == 3: 
+                print("Admin View: Edit Bus")
+                print("Please enter Bus Key: ")
+                buskey = input()
+                print("Please enter Bus status: ") 
+                status = input()
+                # update busses 
+                query = "UPDATE busses SET b_statuskey = \"" + str(status) + "\" WHERE b_buskey = \"" + str(buskey) + "\""
+            elif adminmenu == 9: 
+                admininput = 0; 
+            
+        
+        elif admininput == 3:
+            adminmenu = 0;
+            print("Admin View: View All")
+            print("1. View All Users")
+            print("2. View All Drivers") 
+            print("3. View All Busses")
+            print("4. View All Bus Stops")
+            print("5. View All Bus Routes")
+            adminmenu = int(input())
+            if adminmenu == 1:
+                print("Admin View: All Users")
+                query = "SELECT u_name FROM user"
+                cur.execute(query)
+                rows = cur.fetchall()
+                print("All Users:")
+                for row in rows:
+                    print(row[0])
+                connection.commit()
+            elif adminmenu == 2: 
+                print("Admin View: All Drivers")
+                query = "SELECT d_name FROM drivers"
+                cur.execute(query)
+                rows = cur.fetchall()
+                print("All Drivers:")
+                for row in rows:
+                    print(row[0])
+                connection.commit()
+            elif adminmenu == 3: 
+                print("Admin View: All Busses")
+                query = "SELECT b_buskey, b_model, b_status FROM busses"
+                cur.execute(query)
+                rows = cur.fetchall()
+                print(f"{'Bus Key':<20}{' || ':<5}{'Bus Model':<5}{' || ':<5}{'Bus Status':<0}")
+                for row in rows:
+                    print(f"{row[0]:<20}{' || ':<5}{row[1]:<5}{' || ':<5}{row[2]:<0}")
+                connection.commit()
+            elif adminmenu == 4: 
+                print("Admin View: All Bus Stops")
+                query = "SELECT bs_name FROM busstops"
+                cur.execute(query)
+                rows = cur.fetchall()
+                print("All Bus Stops:")
+                for row in rows:
+                    print(row[0])
+                connection.commit()
+            elif adminmenu == 5: 
+                print("Admin View: All Bus Routes")
+                query = "SELECT r_name FROM routes"
+                cur.execute(query)
+                rows = cur.fetchall()
+                for row in rows:
+                    print(row[0])
+                connection.commit()
+            elif adminmenu == 9: 
+                admininput = 0; 
+        elif admininput == 9: 
+            menuInput = 0
+   
+
+# COMMUTER VIEW START #
+
+# look for which routes contain a certain stop
+# cur.execute("SELECT DISTINCT(r_name) FROM routes JOIN schedule ON sc_routekey = r_routekey JOIN busstops ON bs_stopkey = sc_stopkey WHERE bs_name = \"University Transit Center (UTC)\"")
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row)
+# connection.commit()
+
+# look for what times there's a bus departing from a specific stop
+# cur.execute("SELECT r_name, sc_time FROM schedule JOIN routes ON r_routekey = sc_routekey JOIN busstops ON bs_stopkey = sc_stopkey WHERE bs_name=\"University Transit Center (UTC)\" ORDER BY bs_name, sc_time")
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row)
+# connection.commit()
+
+# look for which routes run on the weekends
+# cur.execute("SELECT r_name FROM routes WHERE r_availability = \"Weekday\"")
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row)
+# connection.commit()
+
+# look for which stops depart at a specific time
+# cur.execute("SELECT bs_name FROM busstops JOIN schedule ON sc_stopkey = bs_stopkey WHERE sc_time = \"8:22 AM\"")
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row)
+# connection.commit()
+
+# COMMUTER VIEW END #
+
+
+# DRIVER VIEW START #
+
+
+
+# DRIVER VIEW END   #
+
+
+# create a new user 
+# cur.execute("""
+#             INSERT INTO user(u_name) VALUES
+#                 ('Kevin Hart'), 
+#                 ('Frank Ocean')
+#                 """)
+# connection.commit()
+
+# add new bus route 
+# cur.execute("""
+#             INSERT INTO routes(r_name, r_routekey, r_availability) VALUES 
+#                 ('Dummy Route', 12, 'Weekend' ) 
+#                 """)
+# connection.commit()
+
+# update bus status to reflect data (starts at 1 not zero)
+# cur.execute("""UPDATE busses SET b_status = 2 WHERE b_status = 1""")
+# connection.commit() 
+# cur.execute("""UPDATE busses SET b_status = 1 WHERE b_status = 0""")
+# connection.commit()
+
+# update drivers similarly to busses 
+# cur.execute("UPDATE drivers SET d_statuskey = 2 WHERE d_statuskey = 1")
+# connection.commit()
+# cur.execute("UPDATE drivers SET d_statuskey = 1 WHERE d_statuskey = 0")
+# connection.commit()
+
+
+
+
+# log bus usage from student
+# cur.execute("INSERT INTO usebus(ubu_id, ubu_buskey, ubu_bs_on, ubu_bs_off) VALUES(3, 1, 1, 3)")
+# connection.commit()
+
+# assign drivers to busses 
+# cur.execute("UPDATE drivers SET d_buskey=1 WHERE d_name='Simon Ventura'")
+# connection.commit()
+
+
+
+# Assigning a bus to a route 
+# cur.execute("UPDATE busses SET b_routekey=1 WHERE b_buskey = 1")
+# connection.commit() 
+# cur.execute("UPDATE busses SET b_routekey=11 WHERE b_buskey = 2")
+# connection.commit() 
+
+# Updating Status of Drivers to begginning of day 
+# cur.execute("UPDATE drivers SET d_statuskey=2 WHERE d_statuskey=1")
+# connection.commit()
+# cur.execute("UPDATE drivers SET d_statuskey=1 WHERE d_statuskey=0")
+# connection.commit()
+# cur.execute("UPDATE drivers SET d_statuskey=3 WHERE d_statuskey=2")
+# connection.commit() 
+
+# Active Busses
+# cur.execute("SELECT * FROM busses WHERE b_status=2")
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row)
+# connection.commit()
+
+
+
+
+
+
+# #look for which driver is currently on what route and what bus they're using on that route
+# cur.execute("SELECT d_name, b_buskey, r_name FROM busses JOIN drivers ON d_buskey = b_buskey JOIN routes ON r_routekey = b_routekey")
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row)
+# connection.commit()
+
+# # delete a route  
+# cur.execute("DELETE FROM routes WHERE r_name = 'DummyRoute'")
+# connection.commit()
+
+
+connection.close()

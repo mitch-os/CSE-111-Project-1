@@ -1,0 +1,10 @@
+r_name,r_routekey,r_availability
+Bobcat Express,1,Weekday
+C-1,2,Weekday
+C-2,3,Weekday
+E1,4,Weekend
+E2,5,Weekend
+FastCat,6,Weekday
+FastCat 2,7,Weekday
+G Line,8,Weekday
+Yosemite Express,9,Weekday
