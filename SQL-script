@@ -271,6 +271,7 @@ while menuInput != 9:
                 print("Please enter new user name: ") 
                 newuser = str(input());
                 query = "INSERT INTO user(u_name) VALUE \"" + newuser + "\" "
+                cur.execute(query);
                 connection.commit();
             elif adminmenu == 2: 
                 print("Admin View: New Driver")
@@ -347,6 +348,7 @@ while menuInput != 9:
             if adminmenu == 1:
                 print("Admin View: All Users")
                 query = "SELECT u_name FROM user"
+                cur.execute(query)
                 rows = cur.fetchall()
                 print("All Users:")
                 for row in rows:
@@ -355,6 +357,7 @@ while menuInput != 9:
             elif adminmenu == 2: 
                 print("Admin View: All Drivers")
                 query = "SELECT d_name FROM drivers"
+                cur.execute(query)
                 rows = cur.fetchall()
                 print("All Drivers:")
                 for row in rows:
@@ -362,9 +365,17 @@ while menuInput != 9:
                 connection.commit()
             elif adminmenu == 3: 
                 print("Admin View: All Busses")
+                query = "SELECT b_buskey, b_model, b_status FROM busses"
+                cur.execute(query)
+                rows = cur.fetchall()
+                print(f"{'Bus Key':<20}{' || ':<5}{'Bus Model':<5}{' || ':<5}{'Bus Status':<0}")
+                for row in rows:
+                    print(f"{row[0]:<20}{' || ':<5}{row[1]:<5}{' || ':<5}{row[2]:<0}")
+                connection.commit()
             elif adminmenu == 4: 
                 print("Admin View: All Bus Stops")
                 query = "SELECT bs_name FROM busstops"
+                cur.execute(query)
                 rows = cur.fetchall()
                 print("All Bus Stops:")
                 for row in rows:
@@ -373,11 +384,15 @@ while menuInput != 9:
             elif adminmenu == 5: 
                 print("Admin View: All Bus Routes")
                 query = "SELECT r_name FROM routes"
+                cur.execute(query)
+                rows = cur.fetchall()
                 for row in rows:
                     print(row[0])
                 connection.commit()
             elif adminmenu == 9: 
                 admininput = 0; 
+        elif admininput == 9: 
+            menuInput = 0
    
 
 # COMMUTER VIEW START #
