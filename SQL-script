@@ -263,7 +263,6 @@ while menuInput != 9:
             print("2. New Driver")
             print("3. New Bus Route")
             print("4. New Bus Stop")
-            print("5. New Bus")
             print("9. Go Back")
             adminmenu = int(input())
             if adminmenu == 1:
@@ -281,29 +280,29 @@ while menuInput != 9:
                 dassign = int(input())
                 print("Enter driver status, enter 0 if N/A: ")
                 dstatus = int(input())
-                query = "INSERT INTO drivers(d_name, d_buskey, d_statuskey) VALUES \"" + newdriver + "\"" "," + dassign + "" 
+                query = "INSERT INTO drivers(d_name, d_buskey, d_statuskey) VALUES \"" + newdriver + "\"" "," + dassign + "," + dstatus  
+                cur.execute(query);
+                connection.commit();
             elif adminmenu == 3: 
                 print("Admin View: New Route")
                 print("Please enter new Route name: ") 
-                newroute = str(input());
-                print("Enter route address")
-                raddress = int(input())
-                query = ""
+                newroute = input();
+                print("Enter route key")
+                rkey = input()
+                print("Enter route availability")
+                ravail = input()
+                query = "INSERT INTO routes(r_name, r_routekey, r_availability) VALUES \"" + newroute + "," + rkey + "," + ravail
+                cur.execute(query);
                 connection.commit();
             elif adminmenu == 4: 
                 print("Admin View: New Stop") 
                 print("Please enter new Stop name: ")
-                newstop = str(input())
-                print("")
-                var = int(input())
-                query = "" 
-            elif adminmenu == 5:
-                print("Admin View: New Bus") 
-                print("Please enter new Bus name: ")
-                newbus = str(input())
-                print("")
-                var = int(input())
-                query = ""
+                bsname = input()
+                print("Please enter Bus Stop key: ")
+                bskey = input()
+                query = "INSERT INTO busstops(bs_name, bs_key) VALUES \"" + bsname + "," + bskey
+                cur.execute(query);
+                connection.commit();
             elif adminmenu == 9:
                 admininput = 0; 
         
@@ -313,25 +312,33 @@ while menuInput != 9:
             print("1. Edit User")
             print("2. Edit Driver")
             print("3. Edit Bus")
-            print("4. Edit Route")
-            print("5. Edit Stop")
             print("9. Go Back")
             adminmenu = int(input())
             if adminmenu == 1:
                 print("Admin View: Edit User")
                 print("Please enter User name: ") 
+                uname = input()
+                # # delete a user
+                query = "DELETE FROM user WHERE u_name = \"" + uname  
+                cur.execute(query) 
+                connection.commit()
+
             elif adminmenu == 2: 
                 print("Admin View: Edit Driver")
-                print("Please enter Driver name: ") 
+                print("Please enter Driver name: ")
+                dname = input()
+                print("Please enter Driver status: ") 
+                status = input()
+                # update drivers similarly to busses 
+                query = "UPDATE drivers SET d_statuskey = \"" + status + "\" WHERE d_name = \"" + dname 
             elif adminmenu == 3: 
                 print("Admin View: Edit Bus")
-                print("Please enter Bus Key: ") 
-            elif adminmenu == 4: 
-                print("Admin View: Edit Route")
-                print("Please enter Route name: ") 
-            elif adminmenu == 5: 
-                print("Admin View: Edit Stop")
-                print("Please enter Stop: ") 
+                print("Please enter Bus Key: ")
+                buskey = input()
+                print("Please enter Bus status: ") 
+                status = input()
+                # update drivers similarly to busses 
+                query = "UPDATE busses SET b_statuskey = \"" + status + "\" WHERE b_buskey = \"" + buskey 
             elif adminmenu == 9: 
                 admininput = 0; 
             
